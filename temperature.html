@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .converter {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p.result {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Temperature Converter</h1>
+        <input type="number" id="temperature" placeholder="Enter temperature">
+        <select id="fromUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <select id="toUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <p class="result" id="result">Result: </p>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temperature = parseFloat(document.getElementById("temperature").value);
+            const fromUnit = document.getElementById("fromUnit").value;
+            const toUnit = document.getElementById("toUnit").value;
+            let result;
+
+            if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+                result = (temperature * 9/5) + 32;
+            } else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+                result = (temperature - 32) * 5/9;
+            } else {
+                result = temperature;
+            }
+
+            document.getElementById("result").textContent = `Result: ${result.toFixed(2)} ${toUnit}`;
+        }
+    </script>
+</body>
+</html>
